@@ -79,12 +79,14 @@ class FirebaseAuthorizationFacade implements IAuthorizationFacade{
   }
 
   @override
-  Future<Option<User>> userAlreadySignedIn() =>
-      _firebaseAuth.currentUser().then(
-              (firebaseUser) {
-                if(firebaseUser == null){
-                  return none();
-                }
-                else return some(User(id: UniqueId.fromString(firebaseUser.uid)));
-              });
+  Future<Option<QuizUser>> userAlreadySignedIn() async =>
+      optionOf(_firebaseAuth.currentUser?.toDomain());
+  }
+
+extension FirebaseUserDomainX on User {
+  QuizUser toDomain() {
+    return QuizUser(
+      id: UniqueId.fromString(uid),
+    );
+  }
 }

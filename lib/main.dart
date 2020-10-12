@@ -1,15 +1,17 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_face_quiz/injection.dart';
-import 'package:flutter_face_quiz/presentation/authorization/authorization_screen.dart';
 import 'package:flutter_face_quiz/presentation/routes/router.gr.dart';
 import 'package:injectable/injectable.dart';
 
 import 'application/authentication/authentication_bloc.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   configureInjection(Environment.prod);
+  await Firebase.initializeApp();
   runApp(AppWidget());
 }
 
@@ -35,9 +37,9 @@ class AuthenticationWidget extends StatelessWidget{
       listener: (context, state) {
         state.map(
             initial: (_) {},
-            authenticated: (_) {print('authenticated');},
+            authenticated: (_) {ExtendedNavigator.of(context).replace(Routes.quizCardPage);},
             unauthenticated: (_) {
-              ExtendedNavigator.of(context).pushReplacementNamed(Routes.authorizationPage);});
+              ExtendedNavigator.of(context).replace(Routes.authorizationPage);});
       },
       child: Scaffold(body: Center(child: CircularProgressIndicator(),)),
     );

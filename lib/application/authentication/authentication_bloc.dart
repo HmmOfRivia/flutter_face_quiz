@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_face_quiz/domain/authorization/i_facade.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:meta/meta.dart';
 
 part 'authentication_event.dart';
 part 'authentication_state.dart';
@@ -26,7 +25,6 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     yield* event.map(
         authenticationRequest: (e) async* {
           final userSignedIn = await _authorizationFacade.userAlreadySignedIn();
-          print(userSignedIn);
           yield userSignedIn.fold(
                   () =>  const AuthenticationState.unauthenticated(),
                   (_) => const AuthenticationState.authenticated());

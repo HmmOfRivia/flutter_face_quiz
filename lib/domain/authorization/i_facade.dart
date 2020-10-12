@@ -14,6 +14,6 @@ abstract class IAuthorizationFacade{
     @required Password password
   });
   Future<Either<AuthorizationFailure, Unit>> signInWithGoogle();
-  Future<Option<User>> userAlreadySignedIn();
+  Future<Option<QuizUser>> userAlreadySignedIn();
   Future<void> signOut();
 }

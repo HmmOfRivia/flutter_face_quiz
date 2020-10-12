@@ -4,54 +4,68 @@
 // AutoRouteGenerator
 // **************************************************************************
 
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter_face_quiz/main.dart';
-import 'package:flutter_face_quiz/presentation/authorization/authorization_screen.dart';
+// ignore_for_file: public_member_api_docs
 
-abstract class Routes {
-  static const authenticationWidget = '/';
-  static const authorizationPage = '/authorization-page';
-  static const all = {
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
+
+import '../../main.dart';
+import '../authorization/authorization_screen.dart';
+import '../quiz_card/quiz_card.dart';
+
+class Routes {
+  static const String authenticationWidget = '/';
+  static const String authorizationPage = '/authorization-page';
+  static const String quizCardPage = '/quiz-card-page';
+  static const all = <String>{
     authenticationWidget,
     authorizationPage,
+    quizCardPage,
   };
 }
 
 class Router extends RouterBase {
   @override
-  Set<String> get allRoutes => Routes.all;
-
-  @Deprecated('call ExtendedNavigator.ofRouter<Router>() directly')
-  static ExtendedNavigatorState get navigator =>
-      ExtendedNavigator.ofRouter<Router>();
-
+  List<RouteDef> get routes => _routes;
+  final _routes = <RouteDef>[
+    RouteDef(Routes.authenticationWidget, page: AuthenticationWidget),
+    RouteDef(Routes.authorizationPage, page: AuthorizationPage),
+    RouteDef(Routes.quizCardPage, page: QuizCardPage),
+  ];
   @override
-  Route<dynamic> onGenerateRoute(RouteSettings settings) {
-    switch (settings.name) {
-      case Routes.authenticationWidget:
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => AuthenticationWidget(),
-          settings: settings,
-        );
-      case Routes.authorizationPage:
-        return MaterialPageRoute<dynamic>(
-          builder: (context) => AuthorizationPage(),
-          settings: settings,
-        );
-      default:
-        return unknownRoutePage(settings.name);
-    }
-  }
+  Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
+  final _pagesMap = <Type, AutoRouteFactory>{
+    AuthenticationWidget: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => AuthenticationWidget(),
+        settings: data,
+      );
+    },
+    AuthorizationPage: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => AuthorizationPage(),
+        settings: data,
+      );
+    },
+    QuizCardPage: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => QuizCardPage(),
+        settings: data,
+      );
+    },
+  };
 }
 
-// *************************************************************************
-// Navigation helper methods extension
-// **************************************************************************
+/// ************************************************************************
+/// Navigation helper methods extension
+/// *************************************************************************
 
-extension RouterNavigationHelperMethods on ExtendedNavigatorState {
-  Future pushAuthenticationWidget() => pushNamed(Routes.authenticationWidget);
+extension RouterExtendedNavigatorStateX on ExtendedNavigatorState {
+  Future<dynamic> pushAuthenticationWidget() =>
+      push<dynamic>(Routes.authenticationWidget);
 
-  Future pushAuthorizationPage() => pushNamed(Routes.authorizationPage);
+  Future<dynamic> pushAuthorizationPage() =>
+      push<dynamic>(Routes.authorizationPage);
+
+  Future<dynamic> pushQuizCardPage() => push<dynamic>(Routes.quizCardPage);
 }

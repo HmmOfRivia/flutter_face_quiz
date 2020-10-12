@@ -1,4 +1,4 @@
-import 'package:flutter_face_quiz/domain/authorization/value_failure.dart';
+import 'package:flutter_face_quiz/domain/core/value_failure.dart';
 
 class ValueFailureError extends Error{
   final ValueFailure valueFailure;

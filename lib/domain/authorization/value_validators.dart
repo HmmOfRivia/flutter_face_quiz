@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_face_quiz/domain/authorization/value_failure.dart';
+import 'package:flutter_face_quiz/domain/core/value_failure.dart';
 
 Either<ValueFailure<String>, String> validateEmailAddress(String input) {
   const emailRegex = r"""^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+""";
@@ -17,3 +17,16 @@ Either<ValueFailure<String>, String> validatePassword(String input) {
     return left(ValueFailure.shortPassword(failedValue: input));
   }
 }
+
+
+/*
+Either<ValueFailure<String>, String> validateAnswer(
+    String answer,
+    String userChoice
+    ) {
+  if (answer == userChoice){
+    return right(answer);
+  } else {
+    return left(ValueFailure.wrongAnswer(failedValue: userChoice));
+  }
+}*/

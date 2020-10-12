@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_face_quiz/domain/authorization/value_failure.dart';
 import 'package:flutter_face_quiz/domain/core/value_errors.dart';
+import 'package:flutter_face_quiz/domain/core/value_failure.dart';
 
 abstract class ValueObject<T>{
   const ValueObject();

@@ -7,39 +7,39 @@ part of 'user_id.dart';
 // FreezedGenerator
 // **************************************************************************
 
-mixin _$User {
+mixin _$QuizUser {
   UniqueId get id;
 
-  User copyWith({UniqueId id});
+  QuizUser copyWith({UniqueId id});
 }
 
-class _$UserTearOff {
-  const _$UserTearOff();
+class _$QuizUserTearOff {
+  const _$QuizUserTearOff();
 
-  _User call({@required UniqueId id}) {
-    return _User(
+  _QuizUser call({@required UniqueId id}) {
+    return _QuizUser(
       id: id,
     );
   }
 }
 
-const $User = _$UserTearOff();
+const $QuizUser = _$QuizUserTearOff();
 
-class _$_User implements _User {
-  const _$_User({@required this.id}) : assert(id != null);
+class _$_QuizUser implements _QuizUser {
+  const _$_QuizUser({@required this.id}) : assert(id != null);
 
   @override
   final UniqueId id;
 
   @override
   String toString() {
-    return 'User(id: $id)';
+    return 'QuizUser(id: $id)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _User &&
+        (other is _QuizUser &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)));
   }
@@ -49,21 +49,21 @@ class _$_User implements _User {
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
 
   @override
-  _$_User copyWith({
+  _$_QuizUser copyWith({
     Object id = freezed,
   }) {
-    return _$_User(
+    return _$_QuizUser(
       id: id == freezed ? this.id : id as UniqueId,
     );
   }
 }
 
-abstract class _User implements User {
-  const factory _User({@required UniqueId id}) = _$_User;
+abstract class _QuizUser implements QuizUser {
+  const factory _QuizUser({@required UniqueId id}) = _$_QuizUser;
 
   @override
   UniqueId get id;
 
   @override
-  _User copyWith({UniqueId id});
+  _QuizUser copyWith({UniqueId id});
 }

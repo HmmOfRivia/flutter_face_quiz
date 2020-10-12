@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_face_quiz/domain/authorization/value_failure.dart';
 import 'package:flutter_face_quiz/domain/authorization/value_validators.dart';
+import 'package:flutter_face_quiz/domain/core/value_failure.dart';
 import 'package:flutter_face_quiz/domain/core/value_objects.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

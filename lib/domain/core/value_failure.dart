@@ -9,4 +9,7 @@ abstract class ValueFailure<T> with _$ValueFailure<T> {
   const factory ValueFailure.shortPassword({
     @required String failedValue,
   }) = ShortPassword<T>;
+  const factory ValueFailure.wrongAnswer({
+    @required String failedValue,
+  }) = WrongAnswer<T>;
 }
